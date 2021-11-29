@@ -16,7 +16,7 @@ def getAllFilesRecursive(root):
                 files.append(join(root,f))
                 if (file_ext == '.c' or file_ext == '.h'):
                    cFiles.append(f)
-                   print('$INSTANCE',f[1:],'cFile')
+                   print('$INSTANCE',f[2:],'cFile')
     return files
 
 def getIncludeDependencies(source_files):
@@ -29,7 +29,7 @@ def getIncludeDependencies(source_files):
                         parts = line.split(" ")
                         dependency = parts[1].strip().split('\t')[0]
                         cLinks[source_file] = dependency[1:-1]
-                        print('cLinks',source_file[1:], dependency[1:-1])
+                        print(source_file[2:], dependency[2:-1], 'cLinks')
             except UnicodeDecodeError:
                 pass
         except FileNotFoundError:
